@@ -19,7 +19,7 @@ public class UserServiceTests
     {
         var result = _service.Create(new CreateUserRequest("Jane Doe", "jane@example.com"));
 
-        Assert.False(result.Success);
+        Assert.True(result.Success);
         Assert.Equal("Jane Doe", result.Value!.Name);
         Assert.Equal("jane@example.com", result.Value.Email);
         Assert.NotEqual(Guid.Empty, result.Value.Id);
@@ -34,7 +34,7 @@ public class UserServiceTests
     {
         var result = _service.Create(new CreateUserRequest(name, email));
 
-        Assert.True(result.Success);
+        Assert.False(result.Success);
         Assert.Equal(UserServiceErrorType.Validation, result.ErrorType);
     }
 
